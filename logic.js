@@ -27,14 +27,15 @@ document.getElementsByClassName("download-app")[0].addEventListener("click", fun
 ]
 
 const linkElement = document.getElementById("liveChatLink")
+const linkTeleElement = document.getElementById("teleCskhLink")
 
-linkElement = addEventListener("click", function (e){
 
+function handleClick(e) {
   let index = parseInt(localStorage.getItem("chatLinkIndex")) || 0;
+  e.currentTarget.href = links[index];
+  index = ( index + 1) % links.length;
+  localStorage.setItem("chatLinkIndex", index)
+}
 
-  linkElement.href = links[index];
-
-  index = (index + 1) % links.length;
-  this.localStorage.setItem("chatLinkIndex", index)
-
-})
+linkElement.addEventListener("click", handleClick);
+linkTeleElement.addEventListener("click", handleClick)
